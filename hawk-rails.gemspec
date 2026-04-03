@@ -5,12 +5,12 @@ require_relative "lib/hawk/rails/version"
 Gem::Specification.new do |spec|
   spec.name          = "hawk-rails"
   spec.version       = Hawk::Rails::VERSION
-  spec.authors       = ["Hawk Team"]
-  spec.email         = ["team@hawk.so"]
+  spec.authors       = ["Alexander Panasenkov"]
+  spec.email         = ["apanasenkov@capaa.ru"]
 
   spec.summary       = "Hawk error tracker catcher for Ruby on Rails"
   spec.description   = "Captures unhandled exceptions and custom events in Rails 8+ applications and sends them to Hawk (hawk.so) error tracker."
-  spec.homepage      = "https://github.com/codex-team/hawk.rails"
+  spec.homepage      = "https://github.com/capaas/hawk-rails"
   spec.license       = "MIT"
 
   spec.required_ruby_version = ">= 3.2"

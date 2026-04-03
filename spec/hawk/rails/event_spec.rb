@@ -86,6 +86,19 @@ RSpec.describe Hawk::Rails::Event do
       expect(payload[:payload][:user][:id]).not_to be_empty
     end
 
+    it "generates different anonymous IDs for different IPs" do
+      error = RuntimeError.new("test")
+      error.set_backtrace([])
+
+      event1 = described_class.new(error, request_info: { ip: "10.0.0.1" })
+      event2 = described_class.new(error, request_info: { ip: "10.0.0.2" })
+
+      id1 = event1.to_payload[:payload][:user][:id]
+      id2 = event2.to_payload[:payload][:user][:id]
+
+      expect(id1).not_to eq(id2)
+    end
+
     it "includes addons with Ruby/Rails info" do
       error = RuntimeError.new("test")
       error.set_backtrace([])

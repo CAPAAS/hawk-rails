@@ -78,7 +78,9 @@ module Hawk
 
       def generate_anonymous_id
         require "digest"
-        Digest::SHA256.hexdigest("hawk-anonymous-#{Socket.gethostname}")[0..15]
+        ip = @request_info[:ip] if @request_info.is_a?(Hash)
+        seed = ["hawk-anonymous", Socket.gethostname, ip].compact.join("-")
+        Digest::SHA256.hexdigest(seed)[0..15]
       end
 
       def build_addons

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.1] - 2026-04-03
+
+Maintenance release (new package version for registry publish).
+
 ## [0.1.0] - 2026-04-03
 
 ### Added

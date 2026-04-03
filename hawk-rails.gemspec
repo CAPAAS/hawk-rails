@@ -28,13 +28,12 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "railties", ">= 8.0"
-  spec.add_dependency "net-http"
+  spec.add_dependency "railties", "~> 8.0"
+  spec.add_dependency "net-http", "~> 0.4"
 
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "webmock", "~> 3.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rubocop", "~> 1.0"
-  spec.add_development_dependency "railties", ">= 8.0"
-  spec.add_development_dependency "actionpack", ">= 8.0"
+  spec.add_development_dependency "actionpack", "~> 8.0"
 end

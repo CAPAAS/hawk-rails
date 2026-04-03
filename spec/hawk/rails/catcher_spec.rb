@@ -69,6 +69,16 @@ RSpec.describe Hawk::Rails::Catcher do
       described_class.instance.send_event(error)
     end
 
+    it "drops event when before_send returns nil" do
+      Hawk::Rails.configuration.before_send = ->(_event) { nil }
+
+      error = RuntimeError.new("should be dropped")
+      error.set_backtrace([])
+
+      expect(Net::HTTP).not_to receive(:new)
+      described_class.instance.send_event(error)
+    end
+
     it "sends with custom context" do
       stub = stub_request(:post, "https://test-id.k1.hawk.so/")
         .to_return(status: 200)

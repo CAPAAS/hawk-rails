@@ -15,7 +15,7 @@ module Hawk
 
         if (hook = Hawk::Rails.configuration.before_send)
           payload = hook.call(payload)
-          return if payload == false
+          return unless payload
         end
 
         deliver(payload)

@@ -1,3 +1,6 @@
+# Автопубликация отключена: GitHub не запускает файлы с расширением не .yml/.yaml.
+# Включить снова: переименовать в gem-push.yml
+# Релиз вручную: bundle exec rake && gem build *.gemspec && gem push *.gem
 name: Ruby Gem
 
 on:

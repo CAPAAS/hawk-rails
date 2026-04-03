@@ -1,0 +1,35 @@
+# frozen_string_literal: true
+
+Hawk::Rails.configure do |config|
+  # Your Hawk integration token (required).
+  # Get it at https://hawk.so in Project Settings > Integrations.
+  config.token = ENV.fetch("HAWK_TOKEN", nil)
+
+  # Application release/version identifier.
+  # Used for source maps and suspected commits tracking.
+  # config.release = ENV.fetch("APP_VERSION", nil)
+
+  # Global context — free-format hash attached to every event.
+  # config.context = { app_name: "MyApp" }
+
+  # Environments where Hawk is active (default: production, staging).
+  config.enabled_environments = %w[production staging]
+
+  # Number of source code lines to include around each backtrace frame (default: 5).
+  # config.source_code_lines = 5
+
+  # Send events asynchronously in a background thread (default: true).
+  # config.async = true
+
+  # Custom collector endpoint (override auto-detected URL).
+  # config.collector_endpoint = "https://your-custom-collector.example.com/"
+
+  # Hook to filter or modify events before sending.
+  # Return the modified event, or false to drop it entirely.
+  # config.before_send = ->(event) {
+  #   if event.dig(:payload, :context, :request, :params)
+  #     event[:payload][:context][:request][:params].delete(:password)
+  #   end
+  #   event
+  # }
+end

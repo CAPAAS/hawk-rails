@@ -10,21 +10,25 @@ module Hawk
       def call(env)
         @app.call(env)
       rescue Exception => e
-        request = ActionDispatch::Request.new(env) if defined?(ActionDispatch::Request)
+        begin
+          request = ActionDispatch::Request.new(env) if defined?(ActionDispatch::Request)
 
-        request_info = if request
-          {
-            url: request.url,
-            method: request.request_method,
-            headers: extract_headers(env),
-            params: safe_params(request),
-            ip: request.remote_ip
-          }
+          request_info = if request
+            {
+              url: request.url,
+              method: request.request_method,
+              headers: extract_headers(env),
+              params: safe_params(request),
+              ip: request.remote_ip
+            }
+          end
+
+          user = extract_user(env)
+
+          Catcher.instance.send_event(e, request_info: request_info, user: user)
+        rescue
+          nil
         end
-
-        user = extract_user(env)
-
-        Catcher.instance.send_event(e, request_info: request_info, user: user)
 
         raise
       end
